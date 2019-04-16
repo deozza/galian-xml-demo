@@ -57,8 +57,8 @@ export class AppComponent{
 		console.log(this.serialized);
 	}
 
-	fileEvent(fileInput:Event, i:number)
+	fileEvent(fileName:string, i:number)
 	{
-		this.gli.documents[i].fileName = fileInput.target.files[0].name;
+		this.gli.documents[i].fileName = fileName;
 	}
 }
