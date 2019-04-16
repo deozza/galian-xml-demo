@@ -14,20 +14,30 @@ export class AppComponent{
 	gli:GLI = new GLI;
 	newDocument:Document;
 	serialized:string = "";
-	days: number[] = [];
-	months: number[]= [];
+	days: string[] = [];
+	months: string[]= [];
 	years: number[]= [];
 
 	constructor()
 	{
 		for(var i = 1; i <=31; i++)
 		{
-			this.days.push(i);
+			let value:string = JSON.stringify(i);
+			if(i < 10)
+			{
+				value = "0"+value;
+			}
+			this.days.push(value);
 		}
 
 		for(var i = 1; i <=12; i++)
 		{
-			this.months.push(i);
+			let value:string = JSON.stringify(i);
+			if(i < 10)
+			{
+				value = "0"+value;
+			}
+			this.months.push(value);
 		}
 
 		const date:Date = new Date();
