@@ -8,9 +8,9 @@ export class GLI {
 	typeLot:string;
 	canal:string = "EVERYCHECK";
 	documents:Array<Document>;
-	idClient:string;
+		idClient:string;
 	title:string;
-	alphabet:string = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
+	alphabet:string = "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
 	base:number = this.alphabet.length;
 	alphabetLookup:any;
 
@@ -104,7 +104,7 @@ export class GLI {
 	{
 			let dt = new Date();
 			let num = dt.getSeconds() + (60 * dt.getMinutes()) + (60 * 60 * dt.getHours());
-			
+
 			let str = "";
 			let modulus;
 
@@ -118,7 +118,7 @@ export class GLI {
 
 			while(numAgrement.length < 3)
 			{
-				numAgrement = "0" + numAgrement;
+				numAgrement = this.alphabet[0] + numAgrement;
 			}
 			return numAgrement;
 	}
