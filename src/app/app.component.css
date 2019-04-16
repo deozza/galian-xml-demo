@@ -1,0 +1,10 @@
+div.col-visualize{
+	background-color: lightgrey;
+	height: 100%;
+}
+
+div.form-block{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 3% 3% 0% 3% ;
+}

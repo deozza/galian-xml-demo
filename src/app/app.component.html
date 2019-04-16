@@ -1,20 +1,76 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="row">
+	<div class="col">
+		<h1 class="text-center">Formulaire</h1>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Date de réception</label>
+				<div class="col-sm-3">
+					<select class="form-control" [(ngModel)]="gli.dayRecep">
+						<option value="undefined" disable>{{gli.dayRecep}} </option>
+						<option *ngFor="let day of days">{{day}}</option> 
 
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" [(ngModel)]="gli.monthRecep">
+						<option value="undefined" disable>{{gli.monthRecep}} </option>
+						<option *ngFor="let month of months">{{month}}</option> 
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" [(ngModel)]="gli.yearRecep">
+						<option value="undefined" disable>{{gli.yearRecep}} </option>
+						<option *ngFor="let year of years">{{year}}</option> 
+					</select>
+				</div>
+			</div>
+
+			<ng-container *ngFor="let file of gli.documents; let i=index;">
+				<div class="form-block">
+					<div class="text-right">
+						<a (click)="removeFile(i)"><i class="fas fa-trash-alt"></i></a>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">N° lot</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="N° lot" [(ngModel)]="file.libDossierSpe">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">ID Client</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="ID Client" [(ngModel)]="file.idClient">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nature</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="Nature du document" [(ngModel)]="file.natureDocument">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Locataires</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="Nom des locataires" [(ngModel)]="file.title">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Document</label>
+						<div class="col-sm-10">
+							<input type="file" class="form-control-file" accept="application/pdf" (change)="fileEvent($event, i)">
+						</div>
+					</div>
+				</div>
+			</ng-container>
+			<div class="text-right">
+				<a (click)="addFile()"  class="pr-sm-2"><i class="fas fa-file-medical"></i></a>				
+				<a (click)="xmlSerialize()"><i class="fas fa-check"></i></a>
+			</div>
+
+	</div>
+	<div class="col">
+		<h1 class="text-center">Visualiser</h1>
+		<div class="col-visualize">
+			<pre>{{ serialized }}</pre>
+		</div>
+	</div>
+</div>
